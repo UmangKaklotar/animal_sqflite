@@ -1,12 +1,16 @@
 import 'dart:io';
 
+import 'package:animal_sqflite/Screen/home_screen.dart';
 import 'package:animal_sqflite/utils/animal_list.dart';
+import 'package:animal_sqflite/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'Screen/animal_detail.dart';
 import 'Screen/splash_screen.dart';
 
 Future<void> copyDatabase() async {
@@ -39,9 +43,19 @@ void main() async {
 
   runApp(
     MaterialApp(
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          titleTextStyle: GoogleFonts.poppins(color: MyColor.black),
+        ),
+        textTheme: TextTheme(
+          bodyText2: GoogleFonts.poppins(color: MyColor.black),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const SplashScreen(),
+        'home': (context) => const HomeScreen(),
+        'detail': (context) => const AnimalDetail(),
       },
     ),
   );
